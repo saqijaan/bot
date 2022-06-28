@@ -41,43 +41,29 @@ class LoadQuestions extends Command
     {
         return [
             [
-                'question' => 'What is your education ?',
-                'options' => []
+                'question' => 'What is your education ? (eg: BSCS, BSIT, MSIT)',
+                'options' => [],
+                'keywords' => []
             ],
             [
-                'question' => 'Are you intersted in helping peoples ?',
-                'options' => []
+                'question' => 'What skills do you have ? (eg: leadership, communication)',
+                'options' => [],
+                'keywords' => []
             ],
             [
-                'question' => 'Do you like physical activities like running, gym etc ?',
-                'options' => []
+                'question' => 'How much experience do you have ? (eg: 30 years)',
+                'options' => [],
+                'keywords' => []
             ],
             [
-                'question' => 'Do you like to be ordered by others ?',
-                'options' => []
+                'question' => 'What are your hobbies (eg: Reading, Computers, Gaming, Creativity)',
+                'options' => [],
+                'keywords' => []
             ],
             [
-                'question' => 'Are you comfortable with issues ?',
-                'options' => []
-            ], [
-                'question' => 'Do you like fixing issues ?',
-                'options' => []
-            ],
-            [
-                'question' => 'Does you communication skills are stronger ?',
-                'options' => []
-            ],
-            [
-                'question' => 'Do you like to share your knowlege with others ?',
-                'options' => []
-            ],
-            [
-                'question' => 'Do you like creativity ?',
-                'options' => []
-            ],
-            [
-                'question' => 'Are you intereseted in making new things ?',
-                'options' => []
+                'question' => 'What are your interested professions. (eg: Developer, Teacher, Web Designer, Engineer, Law)',
+                'options' => [],
+                'keywords' => []
             ],
         ];
     }

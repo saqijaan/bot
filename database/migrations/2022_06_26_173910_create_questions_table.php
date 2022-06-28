@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('question');
             $table->text('options')->nullable();
+            $table->text('keywords')->nullable();
 
             $table->timestamps();
         });

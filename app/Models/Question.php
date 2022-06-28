@@ -11,7 +11,8 @@ class Question extends Model
 
     protected $guarded = [];
     protected $casts = [
-        'options' => 'array'
+        'options' => 'array',
+        'keywords' => 'array'
     ];
 
 }

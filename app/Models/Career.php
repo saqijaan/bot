@@ -17,6 +17,7 @@ class Career extends Model
     public function toSearchableArray()
     {
         return [
+            'id' => $this->id,
             'skills' => $this->skills,
             'education' => $this->education,
             'interests' => $this->interests,

@@ -11,12 +11,14 @@ class ChatBot extends Component
     public $search;
 
     public $questionCounter;
+    public $isLast;
 
     public array $conversation = [];
 
     public function mount()
     {
         $this->questionCounter = -1;
+        $this->isLast = false;
         $this->conversation[] = [ 
             'id' => $this->questionCounter,
             'question' => 'Hi, How are you ?' 
@@ -47,6 +49,30 @@ class ChatBot extends Component
             'id' => $this->questionCounter ,
             'question' =>  $nexQuestion,
         ];
+
+        if ( !$this->isLast ){
+            return;
+        }
+
+        $answers = collect($this->conversation)->filter(fn($question) => isset($question['answer']) && $question['id'] >= 0 )->pluck('answer')->join(' ');
+
+        $matchingCareers = Career::search($answers)->take(3)->get()->pluck('career_name');
+
+        $this->questionCounter ++;
+        
+        if ( $matchingCareers->isNotEmpty() ){
+            $this->conversation[] = [
+                'id' => $this->questionCounter,
+                'question' => "We've found following Career matching your answers. ".$matchingCareers->join(', ')
+            ];
+
+            return;
+        }
+
+        $this->conversation[] = [
+            'id' => $this->questionCounter,
+            'question' => "Sorry we didn't found any matching career:"
+        ];
     }
 
     public function getNextQuestion()
@@ -54,6 +80,7 @@ class ChatBot extends Component
         $question = Question::where('id', '>', $this->questionCounter)->first();
 
         if (!$question) {
+            $this->isLast = true;
             return 'Thanks for providing information. Let us suggest career based on your answers.';
         }
 

@@ -16,6 +16,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @if ( auth()->user()->isAdmin() )
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('careers.index')" :active="request()->routeIs('careers.*')">
+                            {{ __('Careers') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.*')">
+                            {{ __('Questions') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

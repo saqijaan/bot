@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CareerController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function(){
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    
+    Route::resource('careers', CareerController::class)->except('show');
+    Route::resource('questions', QuestionController::class)->except('show');
+
+});
 
 require __DIR__.'/auth.php';
